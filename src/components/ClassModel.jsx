@@ -72,7 +72,7 @@ const ClassModel = ({ getclassdata, data }) => {
                 <div className="mb-3">
                   <label htmlFor="color" className="form-label">Color</label>
                   <div className="grid grid-cols-4 gap-2">
-                    {colorOptions.filter(option => !dataColors.includes(option.value)).map((option) => (
+                    {colorOptions.filter(option => !dataColors?.includes(option.value))?.map((option) => (
 
                       <button
                         key={option.value}
