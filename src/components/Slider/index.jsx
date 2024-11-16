@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Bounce } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux'
-import { setBandValues, setModelThresHoldObject, setModelThresHoldValue } from '../../redux/Slices/AdditionalDetailsSlice/addDetailsSlice'
+import { setBandValues, setModelThresHoldObject, setModelThresHoldValue } from '../../redux/Slices/additional-details/additional-details.slice'
 const Slider = ({ handleModelChange, geoJsonData }) => {
     const dispatch = useDispatch();
     const [sliderOpen, setSliderOpen] = useState(false);
@@ -46,7 +46,7 @@ const Slider = ({ handleModelChange, geoJsonData }) => {
     };
     useEffect(() => {
         if (geoJsonData && Object.keys(geoJsonData).length > 0) {
-            setAccumulatedData(prevData => [...prevData, geoJsonData]); 
+            setAccumulatedData(prevData => [...prevData, geoJsonData]);
         }
     }, [geoJsonData]);
     return (
@@ -69,7 +69,7 @@ const Slider = ({ handleModelChange, geoJsonData }) => {
                 {/* <img src={menuImage} alt="..." width={20} /> */}
                 <FiMenu className="w-6 h-6" />
             </div>
-            
+
             <div className={`${sliderOpen ? "w-[40%] max-[1224px]:w-[60%] max-[812px]:w-[70%] max-[700px]:w-[100%]" : "w-0"} z-[1001] d-flex flex-column align-items-center sidebar position-absolute right-0 rounded-xl`} style={{ overflowY: "scroll", height: '100vh', overflowX: "hidden" }}>
 
                 <div className="w-100 d-flex justify-between">
@@ -295,4 +295,3 @@ const Slider = ({ handleModelChange, geoJsonData }) => {
 }
 
 export default Slider
-

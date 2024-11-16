@@ -19,7 +19,7 @@ import OpacitySlider from "./components/OpacitySlider";
 import { useDispatch, useSelector } from "react-redux";
 import { changeButton } from "./redux/Slices/ButtonSlice/buttonSlice";
 import { setDropdownData, setGeoJsonData, setRegionOverlays, setClassOverlays, setClassOverlaysOpacity, setROIdata, setclassdata } from "./redux/Slices/DataSlice/dataSlice";
-import { setModelSelection, setModelThresHoldValue, setThresholdClass } from "./redux/Slices/AdditionalDetailsSlice/addDetailsSlice";
+import { setModelSelection, setModelThresHoldValue, setThresholdClass } from "./redux/Slices/additional-details/additional-details.slice";
 
 const scale = {
   4: 1000,
@@ -338,7 +338,7 @@ const App = () => {
     }
 
   }, [modelSelection, ThresholdClass]);
-  
+
   return (
     <div className="relative" style={{ zIndex: "10" }}>
       <div className="absolute z-[1000] bottom-7" onClick={() => localStorage.setItem("tour", "true")}>
@@ -402,14 +402,14 @@ const App = () => {
 
             <button className={`w-full h-full `} onClick={() => setOpacitySlider(!opacitySlider)}>{opacitySlider ? 'Hide Opacity' : 'Show Opacity'}</button>
 
-            {opacitySlider && 
+            {opacitySlider &&
               <div className="max-h-[50vh] md:max-h-[80vh] overflow-auto bg-white opacity-div rounded-b-[10px] ">
                 {classOverlays.map((ele, index) => (
-                    <OpacitySlider key={index}  overlayIndex={index} opacitySlider={opacitySlider} imageData={ele} handleSliderChange={handleSliderChange} /> 
+                    <OpacitySlider key={index}  overlayIndex={index} opacitySlider={opacitySlider} imageData={ele} handleSliderChange={handleSliderChange} />
                 ))}
               </div>
-            }       
-            
+            }
+
           </div>
         </div>
 
