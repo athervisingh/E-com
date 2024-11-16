@@ -18,7 +18,7 @@ export const dataSlice = createSlice({
             const { value, name, index } = action.payload;
 
             if (!state.dropdownData[index]) {
-                state.dropdownData[index] = { "selection": null, "name": null };
+                state.dropdownData[index] = { "selection": null, "name": null };//make uper func
             }
 
             state.dropdownData[index] = { selection: value, name: name };

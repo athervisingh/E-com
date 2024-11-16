@@ -11,7 +11,7 @@ export const buttonSlice = createSlice({
         segmentButtonDisabled: true
     },
     reducers: {
-        changeButton: (state = initialState, action) => {
+        changeButton: (state , action) => {
             const { type, payload } = action.payload;
             state[type] = payload;
         }
