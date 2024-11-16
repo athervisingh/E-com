@@ -9,7 +9,7 @@ export const stepTour = ({beacon}) => [
     {
       target: 'body', // Global target for the welcome message
       content: 'Welcome to Sementic Segmentation of satellite imagery! This tool allows users to perform interactive semantic segmentation on satellite imagery using WMS services while leveraging on-device GPU/NPU for enhanced performance.',
-      disableBeacon: beacon
+      disableBeacon: !beacon
     },
     {
       target: '[data-tour="roi-dropdown"]', // Select by attribute
