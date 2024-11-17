@@ -77,11 +77,11 @@ const SearchComponent = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Enter place name"
-                className="border p-2 rounded border-black w-[150px] md:w-[173px]"
+                className="border p-2 rounded border-black w-[173px]"
             />
             <button
                 type="submit"
-                className="items-center pb-1 bg-blue-600 hover:bg-blue-700 text-base text-white p-1 md:p-2 w-[3.9rem] md:w-20  h-9 rounded"
+                className="items-center pb-1 bg-blue-600 hover:bg-blue-700 text-base text-white p-2 w-20 h-9 rounded"
             >
                 Search
             </button>

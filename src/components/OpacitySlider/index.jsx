@@ -1,59 +1,83 @@
-import React from 'react';
-import './slider.css'; // update with correct path
+import React from 'react'
+import styled from 'styled-components';
 
-const OpacitySlider = ({ overlayIndex, opacitySlider, imageData, handleSliderChange }) => {
+const SliderContainer = styled.div`
+  background:#c3c9c8;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+`;
+
+const SliderLabel = styled.label`
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+`;
+
+const StyledSlider = styled.input`
+  width: 100%;
+  height:8px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  background: #ddd;
+  border-radius: 5px;
+  
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &::-ms-thumb {
+    width: 15px;
+    height: 15px;
+    background: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+`;
+
+const OpacitySlider = ({ opacitySlider, imageData, handleSliderChange, setIsDraggingSlider }) => {
   const handleSliderInputChange = (name) => (e) => {
     const newValue = parseFloat(e.target.value);
-    handleSliderChange(name, newValue - imageData[name].opacity, overlayIndex);
+    handleSliderChange(name, newValue - imageData[name].opacity);
   };
-
-  const handleSliderClick = (e, name) => {
-    const rect = e.target.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const percent = x / rect.width
-    const newValue = percent * (1 - 0) + 0
-    handleSliderChange(name, newValue - imageData[name].opacity, overlayIndex)
-  }
   return (
-    <div className="flex flex-wrap justify-center mb-2">
-      {opacitySlider &&
+    <>
+      {opacitySlider && (
         Object.keys(imageData).map((name, index) => (
-          <div key={index} className="bg-white p-2 h-24 w-full max-w-xs">
-            <label className="block mb-1 font-bold text-sm">
-              {name.charAt(0).toUpperCase() + name.slice(1)} Opacity
-            </label>
-            <div className="flex justify-between items-center gap-2">
-              <button
-                onClick={handleSliderChange(name, -0.1, overlayIndex)}
-                disabled={(imageData[name].opacity) <= 0}                className="bg-blue-500 text-white rounded-full w-8 h-5 flex justify-center items-center text-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-              >
-                -
-              </button>
-              <input
+          <SliderContainer key={index} style={{ bottom: `${30 + index * 20}%` }}>
+            <SliderLabel>{name.charAt(0).toUpperCase() + name.slice(1)} Opacity</SliderLabel>
+            <div className='flex justify-center items-center gap-1 z-[1000]'>
+              <button className='btn btn-sm rounded-circle btn-primary ' onClick={handleSliderChange(name, -0.1)} disabled={(imageData[name].opacity) <= 0}>-</button>
+              <StyledSlider
                 type="range"
                 min="0"
                 max="1"
-                step="0.01"
+                step="0.1"
                 value={imageData[name].opacity}
                 onChange={handleSliderInputChange(name)}
-                onClick={(e) => handleSliderClick(e, name)}
-                className="w-full"
               />
-              <button
-                onClick={handleSliderChange(name, 0.1, overlayIndex)}
-                disabled={imageData[name].opacity >= 1}
-                className="bg-blue-500 text-white rounded-full w-8 h-5 flex justify-center items-center text-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
-              >
-                +
-              </button>
+              <button className='btn btn-sm rounded-circle btn-primary ' onClick={handleSliderChange(name, 0.1)} disabled={imageData[name].opacity >= 1}>+</button>
             </div>
-            <label className="block mt-1 font-bold text-sm">
-              Area: {imageData[name].area} km<sup>2</sup>
-            </label>
-          </div>
-        ))}
-    </div>
-  );
-};
+            <SliderLabel>Area: {imageData[name].area} km{<sup>2</sup>}</SliderLabel>
+          </SliderContainer>))
+      )}
+    </>
+  )
+}
 
-export default OpacitySlider;
+export default OpacitySlider

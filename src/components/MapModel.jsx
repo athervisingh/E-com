@@ -48,10 +48,10 @@ const MapModel = ({ ROIdata }) => {
   }
 
   return (
-    <div className=''>
+    <div>
       <div className="modal fade" ref={modalRef} data-bs-backdrop="false" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div className="modal-dialog modal-lg  w-[96%] ">
-          <div className="modal-content absolute top-16 z-[5000] h-[65vh]">
+        <div className="modal-dialog modal-lg">
+          <div className="modal-content absolute top-16 z-[5000]">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">Select Region of Interest</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -1,17 +1,18 @@
 import React from 'react'
 import { ImageOverlay } from 'react-leaflet'
 
-const ImageOverlays = ({ imageData }) => {
+const ImageOverlays = ({imageData , imageBounds , showMask , handleMaskShow}) => {
     return (
         <>
-            {   
+            {
                 Object.keys(imageData).map((name, index) => (
                     <div key={index}>
-                        {imageData[name].url && (
+                        {imageData[name].url && imageBounds && showMask && (
                             <ImageOverlay
                                 url={imageData[name].url}
-                                bounds={imageData[name].bounds}
+                                bounds={imageBounds}
                                 opacity={imageData[name].opacity}
+                                eventHandlers={{ click: handleMaskShow }}
                             />
                         )}
                     </div>

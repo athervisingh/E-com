@@ -1,31 +1,24 @@
 import React from 'react'
 import ClassModel from '../ClassModel'
 import MapModel from '../MapModel'
-import { useSelector } from 'react-redux';
 
-const DropDowns = ({ dataTour, enable, handleChange, heading, data, modal, getData, index }) => {
-    const { dropdownData} = useSelector((state) => state.dataSlice);
-
+const DropDowns = ({ dataTour, enable, value, handleChange, heading, data, modal, getData }) => {
     return (
         <div
             data-tour={dataTour}
             className="d-flex gap-3"
-            style={{ zIndex: "1000", top: "10px", minWidth: '245px' }}
+            style={{ zIndex: "1000", top: "10px", minWidth: '280px' }}
         >
             <select
-                className={`form-select form-select w-100 border rounded border-black w-full ${!enable ? 'cursor-not-allowed opacity-70' : 'cursor-pointer opacity-100'}`}
+                className={`form-select form-select w-100 border rounded border-black w-full ${!enable ? 'cursor-not-allowed opacity-70':'cursor-pointer opacity-100'}`}
                 aria-label="Default select example"
                 disabled={!enable}
-                value={dropdownData[index].selection || ""}
-                onChange={(e) => handleChange(e, index)}
+                value={value || ""}
+                onChange={handleChange}
                 style={{ fontSize: '12px', fontWeight: "bold" }}
             >
                 <option value="-1">{heading}</option>
-                {data?.payload?.map((item, index) => (
-                    <option key={index} value={item.value} name={item.name}>
-                        {item.name}
-                    </option>
-                ))}
+                {data}
             </select>
             <div
                 className="w-50"

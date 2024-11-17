@@ -16,7 +16,7 @@ const colorOptions = [
   { label: 'Gray', value: '#808080' },
 ];
 
-const ClassModel = ({ getclassdata, data }) => {
+const ClassModel = ({ getclassdata , data }) => {
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const modalRef = useRef(null);
@@ -24,19 +24,20 @@ const ClassModel = ({ getclassdata, data }) => {
   const handleSaveData = () => {
     const newName = name.trim();
     const newColor = color;
+console.log(data)
     setName("");
     setColor("");
 
     if (!newName || !newColor) return;
 
     var local_data = JSON.parse(localStorage.getItem('class_data'))
-
+  
     if (local_data !== null) {
 
-      Object.assign(local_data, { [newName]: newColor })
+      Object.assign(local_data, {[newName]: newColor})
     }
     else {
-      local_data = { [newName]: newColor }
+      local_data = {[newName]: newColor}
     }
     localStorage.setItem('class_data', JSON.stringify(local_data))
 
@@ -45,13 +46,12 @@ const ClassModel = ({ getclassdata, data }) => {
 
     getclassdata(newName);
   }
-
-  const dataColors = data?.payload?.map(item => item.value);
+  const dataColors = data.map(item => item.props.value);
   return (
-    <div className='z-5000'>
+    <div className=''>
       <div className="modal fade" ref={modalRef} data-bs-backdrop="false" id="classModel" tabIndex="-1" aria-labelledby="classModelLabel" aria-hidden="true">
-      <div className="modal-dialog modal-lg  w-[96%] h-[350px]">
-      <div className="modal-content absolute top-16 z-[5000] h-[110%]">
+        <div className="modal-dialog modal-lg"> {/* Large modal for map */}
+          <div className="modal-content absolute top-16">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="classModelLabel">Create New Class</h1>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -72,8 +72,8 @@ const ClassModel = ({ getclassdata, data }) => {
                 <div className="mb-3">
                   <label htmlFor="color" className="form-label">Color</label>
                   <div className="grid grid-cols-4 gap-2">
-                    {colorOptions.filter(option => !dataColors?.includes(option.value))?.map((option) => (
-
+                    {colorOptions.filter(option => !dataColors.includes(option.value)).map((option) => (
+                      
                       <button
                         key={option.value}
                         type="button"
