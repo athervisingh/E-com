@@ -383,7 +383,7 @@ const App = () => {
 
           <LayersControl.BaseLayer checked name="Satellite Map">
             <TileLayer
-              url="https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=fIYt5qeKuBJ66khalaCH"
+              url="https://api.maptiler.com/maps/hybrid/{z}/{x}/{y}.jpg?key=BXRBTZGBlasILL7KOzP2"
               attribution='&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
           </LayersControl.BaseLayer>
